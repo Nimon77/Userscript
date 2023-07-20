@@ -15,7 +15,7 @@ export const HUDToast = Toastify({
         color: 'white',
         borderWidth: '2px',
         borderStyle: 'solid',
-        borderImage: 'linear-gradient(180deg, black) 1 1',
+        borderImage: 'linear-gradient(black, black) 1 1',
         zIndex: 100000,
         transition: 'none'
     }
