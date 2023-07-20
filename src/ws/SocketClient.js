@@ -15,6 +15,7 @@ export class SocketClient {
     keepaliveTimeout;
     keepaliveCheckerInterval;
     connected = false;
+    capabilities = ['priorityMappings'];
 
     connect(client) {
         this.connected = false;
@@ -43,6 +44,7 @@ export class SocketClient {
         };
 
         this.ws.onclose = () => {
+            client.canvasPlacer.mayPlace = false;
             warningNotification(lang().TOAST_LOST_CONNECTION, lang().TOAST_LOST_CONNECTION_BODY);
             clearInterval(this.keepaliveCheckerInterval);
             this.connected = false;
@@ -115,10 +117,12 @@ export class SocketClient {
     }
 
     enableCapability(capability) {
+        if (!this.capabilities.includes(capability)) this.capabilities.push(capability);
         this.sendPayload('enableCapability', capability);
     }
 
     disableCapability(capability) {
+        if (this.capabilities.includes(capability)) this.capabilities.splice(this.capabilities.indexOf(capability), 1);
         this.sendPayload('disableCapability', capability);
     }
 }

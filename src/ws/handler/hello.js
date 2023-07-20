@@ -1,6 +1,6 @@
 import {USERSCRIPT_REVISION} from '../../constants.js';
 
-export function handleHello(client, payload) {
+export async function handleHello(client, payload) {
     client.ws.connected = true;
     client.ws.id = payload.id;
     client.ws.keepaliveTimeout = payload.keepaliveTimeout;
@@ -8,7 +8,9 @@ export function handleHello(client, payload) {
     client.ws.subscribe('announcements');
     client.ws.subscribe('orders');
 
-    client.ws.enableCapability('priorityMappings');
+    for (const capability of client.ws.capabilities) {
+        client.ws.enableCapability(capability);
+    }
 
     client.ws.sendPayload('brand', {
         author: 'PlaceNL',
@@ -17,4 +19,5 @@ export function handleHello(client, payload) {
     });
 
     client.ws.sendPayload('getOrder');
+    client.canvasPlacer.mayPlace = true;
 }
