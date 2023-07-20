@@ -77,11 +77,10 @@ export class CanvasPlacer {
 
                         infoNotification(lang().TOAST_PLACING_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY));
                         let delay = await placePixel(client, canvasX, canvasY, pi, canvas);
-                        let timeout = Math.max(this.cooldownEndsAt - Date.now(), 1000);
-                        infoNotification(lang().TOAST_PLACED_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY), timeout);
-
                         if (typeof delay === 'number') {
                             this.cooldownEndsAt = delay;
+                            let timeout = Math.max(this.cooldownEndsAt - Date.now(), 1000);
+                            infoNotification(lang().TOAST_PLACED_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY), null, timeout);
                             infoNotification(lang().TOAST_PLACE_PIXELS_IN.replace('{time}', new Date(this.cooldownEndsAt).toLocaleTimeString()), null, timeout);
                         }
 
@@ -89,6 +88,7 @@ export class CanvasPlacer {
                     }
                 } else {
                     infoNotification(lang().TOAST_ALL_PIXELS_RIGHT, lang().TOAST_ALL_PIXELS_RIGHT_BODY, 30_000);
+                    this.cooldownEndsAt = Date.now() + 30_000;
                 }
             } finally {
                 this.placing = false;
