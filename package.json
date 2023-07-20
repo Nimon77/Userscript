@@ -2,7 +2,7 @@
   "name": "Userscript",
   "version": "0.0.0",
   "description": "The easiest way to run our automated placer, right from your browser",
-  "repository": "https://github.com/PlaceNL/Userscript.git",
+  "repository": "https://github.com/Nimon77/Userscript.git",
   "license": "GPLv3",
   "private": true,
   "dependencies": {
