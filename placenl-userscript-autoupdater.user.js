@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         PlaceNL Userscript (Autoupdater)
-// @namespace    https://github.com/PlaceNL/Userscript
+// @name         Place42 Userscript (Autoupdater)
+// @namespace    https://github.com/Nimon77/Userscript
 // @version      0.0.2
 // @description  The easiest way to run our automated placer and keep it up to date, right from your browser
-// @author       PlaceNL
+// @author       Nimon77
 // @match        https://www.reddit.com/r/place/*
 // @match        https://new.reddit.com/r/place/*
 // @connect      reddit.com
